@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-0": {
-            "njr1489\\SvgBuilder": "src"
+            "SvgBuilder": "src"
         }
     }
 }
