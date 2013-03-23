@@ -16,8 +16,8 @@ abstract class AbstractCollection implements \IteratorAggregate, \ArrayAccess, \
      */
     public function __construct(array $data = array())
     {
-        foreach ($data as $value) {
-            $this->_data[] = $value;
+        foreach ($data as $key => $value) {
+            $this->offsetSet($key, $value);
         }
     }
 
