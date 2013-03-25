@@ -59,5 +59,10 @@ abstract class AbstractCollection implements \IteratorAggregate, \ArrayAccess, \
     public function offsetUnset($offset)
     {
         unset($this->_data[$offset]);
-    }   
+    }
+
+    public function toArray()
+    {
+        return $this->_data;
+    }
 }

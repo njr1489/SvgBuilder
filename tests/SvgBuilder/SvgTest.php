@@ -5,8 +5,12 @@ class SvgTest extends PHPUnit_Framework_TestCase
     public function testRender()
     {
         $svg = new SvgBuilder\Svg();
-        $expectedSvg = file_get_contents(__DIR__ . '/sample.svg');
-        $this->assertEquals($svg->render(), $expectedSvg);
+        //$expectedSvg = file_get_contents(__DIR__ . '/sample.svg');
+        $expectedString = '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>'
+        . "\n" . '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">'
+        . "\n" . '<svg>'
+        . "\n" . '</svg>';
+        $this->assertEquals($svg->render(), $expectedString);
     }
 
     public function testSetOptions()

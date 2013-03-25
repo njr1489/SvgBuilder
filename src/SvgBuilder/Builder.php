@@ -32,7 +32,7 @@ class Builder
 
     public function addElement(Element $element)
     {
-        $this->_elements[] = $_element;
+        $this->_elements[] = $element;
     }
 
     public function build()

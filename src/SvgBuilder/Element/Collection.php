@@ -13,7 +13,12 @@ class Collection extends AbstractCollection
 
     protected function _addElement($offset, ElementInterface $element)
     {
-        $this->_data[$offset] = $element;
+        if ($offset !== null) {
+            $this->_data[$offset] = $element;
+        }
+        else {
+            $this->_data[] = $element;
+        }
     }
 
 }
