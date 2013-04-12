@@ -21,8 +21,8 @@ class Builder
     public function reset()
     {
         $this->_options = null;
-        $this->_attributes = new AttributeCollection();
-        $this->_elements = new ElementCollection();
+        $this->_attributes = array();
+        $this->_elements = array();
     }
 
     public function addAttribute(Attribute $attribute)
@@ -37,6 +37,10 @@ class Builder
 
     public function build()
     {
-        return new Svg($this->_options, $this->_attributes, $this->_elements);
+        return new Svg(
+            $this->_options,
+            new AttributeCollection($this->_attributes),
+            new ElementCollection($this->_elements)
+        );
     }
 }

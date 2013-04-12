@@ -4,38 +4,39 @@ namespace SvgBuilder\Element;
 
 class CollectionTest extends \PHPUnit_Framework_TestCase
 {
-    protected $_collection;
-
-    protected function setUp()
-    {
-        $this->_collection = new Collection();
-    }
-
     public function testOffsetSet()
     {
-        $elementMock = $this->getMock('SvgBuilder\\Element', null, array('g'));
-        $this->_collection->offsetSet(0, $elementMock);
-        $this->assertInstanceOf('SvgBuilder\\Element', $this->_collection[0]);
-        $this->assertEquals($elementMock, $this->_collection[0]);
+        $this->setExpectedException('BadMethodCallException');
+        $collection = new Collection(array(null => $this->getMock('SvgBuilder\\Element', null, array('g'))));
+        $collection->offsetSet(null, $this->getMock('SvgBuilder\\Element', null, array('g')));
     }
 
     public function testCount()
     {
-        $this->_collection[] = $this->getMock('SvgBuilder\\Element', null, array('g'));
-        $this->_collection[] = $this->getMock('SvgBuilder\\Element', null, array('g'));
-        $this->assertEquals($this->_collection->count(), 2);
+        $mocks = array(
+            $this->getMock('SvgBuilder\\Element', null, array('a')),
+            $this->getMock('SvgBuilder\\Element', null, array('b')),
+            $this->getMock('SvgBuilder\\Element', null, array('c'))
+        );
+        $collection = new Collection($mocks);
+        $this->assertCount(3, $collection);
     }
 
     public function testOffsetUnset()
     {
-        $this->_collection[] = $this->getMock('SvgBuilder\\Element', null, array('g'));
-        $this->_collection->offsetUnset(0);
-        $this->assertEquals(0, $this->_collection->count());
+        $this->setExpectedException('BadMethodCallException');
+        $collection = new Collection(array($this->getMock('SvgBuilder\\Element', null, array('g'))));
+        $collection->offsetUnset(0);
     }
 
     public function testToArray()
     {
-        $array = $this->_collection->toArray();
-        $this->assertInternalType('array', $array);
+        $mocks = array(
+            $this->getMock('SvgBuilder\\Element', null, array('a')),
+            $this->getMock('SvgBuilder\\Element', null, array('b')),
+            $this->getMock('SvgBuilder\\Element', null, array('c'))
+        );
+        $collection = new Collection($mocks);
+        $this->assertInternalType('array', $collection->toArray());
     }
 }

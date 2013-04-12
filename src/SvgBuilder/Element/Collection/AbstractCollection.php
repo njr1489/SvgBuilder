@@ -17,7 +17,7 @@ abstract class AbstractCollection implements \IteratorAggregate, \ArrayAccess, \
     public function __construct(array $data = array())
     {
         foreach ($data as $key => $value) {
-            $this->offsetSet($key, $value);
+            $this->_offsetSet($key, $value);
         }
     }
 
@@ -39,6 +39,9 @@ abstract class AbstractCollection implements \IteratorAggregate, \ArrayAccess, \
         return new \ArrayIterator($this->_data);
     }
 
+    /**
+     * Checks if an offset exists 
+     */
     public function offsetExists($offset)
     {
         return isset($this->_data[$offset]);
@@ -54,13 +57,29 @@ abstract class AbstractCollection implements \IteratorAggregate, \ArrayAccess, \
     }
 
     /**
-     * Unsets an element at the offset position
+     * @throws \BadMethodCallException
      */
     public function offsetUnset($offset)
     {
-        unset($this->_data[$offset]);
+        throw new \BadMethodCallException('This collection is immutable, you cannot add or remove elements from it.');
     }
 
+    /**
+     * @throws \BadMethodCallException
+     */
+    public function offsetSet($offset, $value)
+    {
+        throw new \BadMethodCallException('This collection is immutable, you cannot add or remove elements from it.');
+    }
+
+    /**
+     * Used for child classes to implement their own form of validation
+     */
+    abstract protected function _offsetSet($offset, $value);
+
+    /**
+     * Returns the data as an array
+     */
     public function toArray()
     {
         return $this->_data;

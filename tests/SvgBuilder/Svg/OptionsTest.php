@@ -25,7 +25,7 @@ class OptionsTest extends \PHPUnit_Framework_TestCase
     public function testGetDoctype()
     {
         $this->assertEquals(
-                '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">',
+            '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">',
             $this->_options->getDocType()
         );
     }

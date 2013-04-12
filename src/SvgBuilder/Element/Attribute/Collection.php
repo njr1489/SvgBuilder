@@ -7,12 +7,12 @@ use \SvgBuilder\Element\Attribute;
 
 class Collection extends AbstractCollection
 {
-    public function offsetSet($offset, $value)
+    protected function _offsetSet($offset, $value)
     {
-        $this->_addAttribute($offset, $value);
+        $this->_addAttribute($value);
     }
 
-    protected function _addAttribute($offset, Attribute $attribute)
+    protected function _addAttribute(Attribute $attribute)
     {
         $name = $attribute->getName();
         if (isset($this->_data[$name])) {

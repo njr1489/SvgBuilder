@@ -6,18 +6,18 @@ use \SvgBuilder\Element\Collection\AbstractCollection;
 
 class Collection extends AbstractCollection
 {
-    public function offsetSet($offset, $value)
+    protected function _offsetSet($offset, $value)
     {
         $this->_addElement($offset, $value);
     }
 
     protected function _addElement($offset, ElementInterface $element)
     {
-        if ($offset !== null) {
-            $this->_data[$offset] = $element;
+        if ($offset === '') {
+            $this->_data[] = $element;
         }
         else {
-            $this->_data[] = $element;
+            $this->_data[$offset] = $element;
         }
     }
 
